@@ -1,0 +1,1 @@
+Use this directory to store any screenshot files for development. By default, the contents of this directory will not be version-controlled.
