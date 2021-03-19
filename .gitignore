@@ -2,3 +2,4 @@
 .DS_Store
 screenshots/*
 !screenshots/README.md
+env/*
