@@ -40,7 +40,10 @@ def use_x_display():
     # Xwayland can not be used for screenshot
     return DISPLAY and XDG_SESSION_TYPE != "wayland"
 
-print("Hi")
+def using_multiple_displays():
+    with mss.mss() as mss_instance:
+        print(mss_instance.monitors)
+        return len(mss_instance.monitors) > 1
 
 # check if running under linux
 if platform_is_linux():
@@ -67,7 +70,7 @@ host = platform.node()
 op_system = platform.system()
 
 
-
+print(using_multiple_displays())
 
 
 # define image quality param
