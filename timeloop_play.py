@@ -42,8 +42,17 @@ def use_x_display():
 
 def using_multiple_displays():
     with mss.mss() as mss_instance:
-        print(mss_instance.monitors)
-        return len(mss_instance.monitors) > 1
+        #print(mss_instance.monitors)
+        return len(mss_instance.monitors) > 2
+
+def res_gt_1080p(monitor_dict):
+    width = monitor_dict['width']
+    height = monitor_dict['height']
+    #print(f"width is {width}")
+    #print(f"height is {height}")
+    return width > 1920 or height > 1080
+
+
 
 # check if running under linux
 if platform_is_linux():
@@ -69,7 +78,7 @@ user_id = get_username()
 host = platform.node()
 op_system = platform.system()
 
-
+print("checking mult displays")
 print(using_multiple_displays())
 
 
@@ -89,9 +98,13 @@ with mss.mss() as mss_instance:
         monitor_1 = mss_instance.monitors[1]
         screenshot1 = mss_instance.grab(monitor_1)
         img1 = Image.frombytes("RGB", screenshot1.size, screenshot1.bgra, "raw", "BGRX")  # Convert to PIL.Image
-        img11 = img1.resize((1920, 1080))
+
+        if res_gt_1080p(monitor_1):
+            print("resizing screenshot to 1080p")
+            img1 = img1.resize((1920, 1080))
+        
         #img11.save(output_filename_smaller_png)
-        img11.save(output_filename_jpg, quality = img_quality)
+        img1.save(output_filename_jpg, quality = img_quality)
         print("End compressed picture saving : {}".format(time.ctime()))
 
     @tl.job(interval=timedelta(seconds=30))
@@ -103,8 +116,11 @@ with mss.mss() as mss_instance:
         monitor_1 = mss_instance.monitors[1]
         screenshot1 = mss_instance.grab(monitor_1)
         img1 = Image.frombytes("RGB", screenshot1.size, screenshot1.bgra, "raw", "BGRX")  # Convert to PIL.Image
-        img11 = img1.resize((1920, 1080))
-        img11.save(output_filename_smaller_png)
+        if res_gt_1080p(monitor_1):
+            print("resizing screenshot to 1080p")
+            img1 = img1.resize((1920, 1080))
+        
+        img1.save(output_filename_smaller_png)
         print("End png picture saving : {}".format(time.ctime()))
 
 tl.start(block=True)
