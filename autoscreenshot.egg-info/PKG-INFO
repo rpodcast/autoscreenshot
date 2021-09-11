@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: autoscreenshot
+Version: 0.1.0
+Summary: A simple command-line tool to take screenshots of a single monitor at regular time intervals.
+Home-page: https://github.com/rpodcast/autoscreenshot
+Author: Eric Nantz
+Author-email: tnercast@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3

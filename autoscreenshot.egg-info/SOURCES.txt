@@ -1,0 +1,10 @@
+README.md
+setup.py
+autoscreenshot/__init__.py
+autoscreenshot/cli.py
+autoscreenshot/getscreenshot.py
+autoscreenshot/screenshotloop.py
+autoscreenshot.egg-info/PKG-INFO
+autoscreenshot.egg-info/SOURCES.txt
+autoscreenshot.egg-info/dependency_links.txt
+autoscreenshot.egg-info/top_level.txt
